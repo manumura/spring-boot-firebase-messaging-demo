@@ -49,18 +49,20 @@ public class FirebaseServiceImpl implements FirebaseService {
     @Override
     public void sendNotificationToTarget(DirectNotification notification) {
         Map<String, String> dataMap = new HashMap<>();
+        dataMap.put("title", notification.getTitle());
+        dataMap.put("body", notification.getBody());
         dataMap.put("icon", ICON);
         dataMap.put("link", notification.getLink());
 
         Message message = Message.builder()
                 .setWebpushConfig(
                         WebpushConfig.builder()
-                                .setNotification(
-                                        WebpushNotification.builder()
-                                                .setTitle(notification.getTitle())
-                                                .setBody(notification.getBody())
-                                                .setIcon(ICON)
-                                                .build())
+//                                .setNotification(
+//                                        WebpushNotification.builder()
+//                                                .setTitle(notification.getTitle())
+//                                                .setBody(notification.getBody())
+//                                                .setIcon(ICON)
+//                                                .build())
                                 .setFcmOptions(
                                         WebpushFcmOptions.builder()
                                                 .setLink(notification.getLink())
